@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Frontend - FastAPI</title>
+</head>
+<body>
+  <h1>Consulta ao Backend</h1>
+  <button onclick="getMensagem()">Conectar</button>
+  <p id="resultado"></p>
+
+  <script>
+    async function getMensagem() {
+      const res = await fetch("http://fastapi-service:8000/");
+      const data = await res.json();
+      document.getElementById("resultado").innerText = data.message;
+    }
+  </script>
+</body>
+</html>
+
