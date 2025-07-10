@@ -1,0 +1,36 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Atualizando pacotes
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Instalando dependências básicas
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Instalando Docker
+      shell: curl -fsSL https://get.docker.com | sh
+
+    - name: Adicionando usuário 'vagrant' ao grupo docker
+      user:
+        name: vagrant
+        groups: docker
+        append: yes
+
+    - name: Instalando dependências adicionais (necessárias para Kubernetes/kind)
+      apt:
+        name:
+          - make
+          - git
+          - vim
+          - wget
+        state: present
+
