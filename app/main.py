@@ -4,7 +4,6 @@ from sqlalchemy import create_engine, text
 app = FastAPI()
 
 DATABASE_URL = "postgresql://postgres:postgres@postgres-service:5432/postgres"
-
 engine = create_engine(DATABASE_URL)
 
 @app.get("/")
