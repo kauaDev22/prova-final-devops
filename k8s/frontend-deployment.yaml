@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: nginx
+        image: kaua010/frontend-app:latest
         ports:
         - containerPort: 80
         
