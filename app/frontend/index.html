@@ -10,11 +10,11 @@
   <p id="resultado"></p>
 
   <script>
-    async function getMensagem() {
-      const res = await fetch("http://fastapi-service:8000/");
-      const data = await res.json();
-      document.getElementById("resultado").innerText = data.message;
-    }
+   async function getMensagem() {
+    const res = await fetch("http://localhost:80000/");
+    const data = await res.json();
+    document.getElementById("resultado").innerText = data.message;
+  }
   </script>
 </body>
 </html>
