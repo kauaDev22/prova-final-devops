@@ -1,20 +1,62 @@
-<!-- frontend/index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <title>Frontend - FastAPI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #222;
+    }
+  </style>
 </head>
 <body>
   <h1>Consulta ao Backend</h1>
   <button onclick="getMensagem()">Conectar</button>
-  <p id="resultado"></p>
+  <p id="resultado">Clique no botão para buscar a mensagem.</p>
 
   <script>
     async function getMensagem() {
-      const res = await fetch("http://192.168.56.10:8000/");
-      const data = await res.json();
-      document.getElementById("resultado").innerText = data.message;
+      try {
+        const res = await fetch("http://192.168.56.10:8000/");
+        const data = await res.json();
+        document.getElementById("resultado").innerText = data.message;
+      } catch (error) {
+        document.getElementById("resultado").innerText = "Erro ao conectar ao backend.";
+        console.error(error);
+      }
     }
   </script>
 </body>
